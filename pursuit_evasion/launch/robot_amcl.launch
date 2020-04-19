@@ -8,12 +8,12 @@
   <arg name="first_bot"  default="tb3_0"/>
   <arg name="second_bot"  default="tb3_1"/>
   
-  <arg name="map_file" default="$(find turtlebot3_navigation)/maps/map.yaml"/>
+  <arg name="map_file" default="$(find pursuit_evasion)/maps/map.yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="false"/>
   <arg name="world_index" default="0"/>
   <!-- <arg name="world_name"/> -->
-  <arg name="gui" default="false"/>
+  <arg name="gui" default="true"/>
   <!-- <arg name="world_name"/> -->
 
   <arg name="first_bot_x_pos" default="-1.0"/>
@@ -77,6 +77,10 @@
       <param name="publish_frequency" type="double" value="50.0" />
       <param name="tf_prefix" value="$(arg first_bot)" />
     </node>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="False"/>
+  </node>
 
     <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg first_bot) -x $(arg first_bot_x_pos) -y $(arg first_bot_y_pos) -z $(arg first_bot_z_pos) -Y $(arg first_bot_yaw) -param robot_description" />
 
